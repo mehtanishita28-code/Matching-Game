@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Memory Match Game</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <main class="game-container">
+
+
+
+
+
+
+
+        <!-- WELCOME SCREEN -->
+        <section id="welcomeScreen" class="welcome-screen">
+
+            <h1 class="colorful-title">
+    <span>Memory</span> <span>Match!</span>
+</h1>
+
+            <p>
+                Test your memory and find all
+                the matching pairs!
+            </p>
+
+            <div class="instructions">
+
+                <h2>How to Play</h2>
+
+                <p>1. Flip two cards at a time.</p>
+                <p>2. Find all eight matching pairs.</p>
+                <p>3. Try to finish in the fewest moves.</p>
+
+            </div>
+
+            <button id="startBtn" type="button">
+                Start Game
+            </button>
+
+        </section>
+
+
+        <!-- GAME SCREEN -->
+        <section id="playScreen" hidden>
+
+           <h1 class="colorful-title">
+    <span>Memory</span> <span>Match!</span>
+</h1>
+
+            <p>Find all the matching pairs!</p>
+
+            <!-- GAME STATISTICS -->
+            <div class="game-info">
+
+                <p>
+                    Moves:
+                    <span id="moves">0</span>
+                </p>
+
+              <p>Time: <span id="timer">00:00</span></p>
+                <p>
+                    Best Score:
+                    <span id="bestScore">--</span>
+                </p>
+
+            </div>
+
+
+            <!-- MEMORY CARDS -->
+            <div class="game-board" id="gameBoard">
+                <!-- Cards will appear here -->
+            </div>
+
+
+            <!-- RESTART BUTTON -->
+            <button id="restartBtn" type="button">
+                Restart Game
+            </button>
+
+        </section>
+
+<!-- WINNING SCREEN -->
+<section id="winScreen" class="win-screen" hidden>
+
+    <div class="trophy">🏆</div>
+
+    <h1>You Did It!</h1>
+
+    <p>Congratulations! You've matched all the cards.</p>
+
+    <div class="win-stats">
+
+        <div class="stat-box">
+            <p>Total Moves</p>
+            <h2 id="finalMoves">0</h2>
+        </div>
+
+        <div class="stat-box">
+            <p>Time Taken</p>
+           <h2><span id="finalTime">00:00</span></h2>
+        </div>
+
+    </div>
+
+    <button id="playAgainBtn" type="button">
+        Play Again
+    </button>
+
+</section>
+
+
+    </main>
+
+</body>
+</html>

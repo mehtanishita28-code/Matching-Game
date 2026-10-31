@@ -1,0 +1,623 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap');
+
+
+:root {
+    --background: #fff9ef;
+    --purple: #ff6378;
+    --dark-purple: #29364e;
+    --lavender: #ffc84a;
+    --pink: #ff9b73;
+    --text: #786b67;
+    --white: #ffffff;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background-image: url("assets/game-background.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    font-family: 'DM Sans', sans-serif;
+    color: var(--dark-purple);
+}
+
+
+
+[hidden] {
+    display: none !important;
+}
+
+.game-container {
+    width: min(100% - 32px, 650px);
+    margin: 50px auto;
+    text-align: center;
+}
+
+h1, h2 {
+    font-family: 'Outfit', sans-serif;
+}
+
+h1 {
+    font-size: clamp(32px, 5vw, 44px);
+    font-weight: 600;
+    color: var(--dark-purple);
+    margin: 0 0 12px;
+}
+
+p {
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.welcome-screen,
+.win-screen {
+    background: var(--white);
+    border-radius: 28px;
+    padding: 48px 35px;
+    box-shadow: 0 15px 45px rgba(91, 65, 111, 0.07);
+}
+
+.instructions {
+    background: var(--background);
+    border-radius: 18px;
+    padding: 24px;
+    margin: 28px 0;
+    text-align: left;
+}
+
+.instructions h2 {
+    color: var(--dark-purple);
+    margin-top: 0;
+}
+
+.instructions p {
+    margin: 10px 0;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+#startBtn,
+#restartBtn,
+#playAgainBtn {
+    background: var(--purple);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+#startBtn:hover,
+#restartBtn:hover,
+#playAgainBtn:hover {
+    background: var(--dark-purple);
+    transform: translateY(-2px);
+}
+
+.game-info {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 28px 0;
+}
+
+.game-info p {
+    flex: 1;
+    background: var(--white);
+    border-radius: 16px;
+    padding: 16px 8px;
+    margin: 0;
+    font-size: 14px;
+    box-shadow: 0 5px 20px rgba(91, 65, 111, 0.04);
+}
+
+.game-info span {
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--dark-purple);
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    max-width: 500px;
+    margin: 28px auto;
+}
+
+.card {
+    width: 100%;
+    aspect-ratio: 1;
+    background: var(--lavender);
+    border: 1px solid #d6c5e4;
+    border-radius: 18px;
+    box-shadow: 0 6px 15px rgba(41, 54, 78, 0.12);
+    font-size: clamp(25px, 5vw, 38px);
+    color: var(--purple);
+    box-shadow: 0 5px 12px rgba(91, 65, 111, 0.06);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.card:hover:not(:disabled) {
+    transform: translateY(-3px);
+    background: #dfcbea;
+}
+
+.card.flipped {
+    background: var(--white);
+}
+
+.card.matched {
+    background: #e9f4e9;
+    border-color: #c5e3ca;
+}
+
+.card:focus-visible,
+#startBtn:focus-visible,
+#restartBtn:focus-visible,
+#playAgainBtn:focus-visible {
+    outline: 3px solid var(--dark-purple);
+    outline-offset: 4px;
+}
+
+.win-screen .trophy {
+    font-size: 58px;
+    margin-bottom: 15px;
+}
+
+.win-stats {
+    display: flex;
+    gap: 16px;
+    margin: 30px 0;
+}
+
+.stat-box {
+    flex: 1;
+    background: var(--background);
+    border-radius: 18px;
+    padding: 20px;
+}
+
+.stat-box p {
+    font-size: 13px;
+    margin: 0;
+}
+
+.stat-box h2 {
+    font-size: 28px;
+    margin: 8px 0 0;
+}
+
+@media (max-width: 480px) {
+    .game-container {
+        margin: 25px auto;
+    }
+
+    .welcome-screen,
+    .win-screen {
+        padding: 30px 20px;
+    }
+
+    .game-board {
+        gap: 8px;
+    }
+
+    .card {
+        border-radius: 12px;
+    }
+
+    .game-info {
+        gap: 8px;
+    }
+
+    .game-info p {
+        padding: 12px 5px;
+        font-size: 12px;
+    }
+
+    .game-info span {
+        font-size: 20px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+
+/* Bright colorful cards */
+.card {
+    background: #ff6378;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    color: #ffffff;
+}
+
+.card:nth-child(4n + 2) {
+    background: #ffc84a;
+    color: #29364e;
+}
+
+.card:nth-child(4n + 3) {
+    background: #38c9bb;
+}
+
+.card:nth-child(4n + 4) {
+    background: #527bfa;
+}
+
+/* Hover effect */
+.card:hover:not(:disabled):not(.flipped) {
+    transform: translateY(-4px);
+}
+
+/* Revealed cards */
+.card.flipped {
+    background: #ffffff;
+    color: #29364e;
+}
+
+/* Matched cards */
+.card.matched,
+.card.matched.flipped {
+    background: #dcf8e7;
+    border-color: #38c9bb;
+    color: #29364e;
+}
+
+/* Colorful score boxes */
+.game-info p:nth-child(1) {
+    background: #ff6378;
+    color: #ffffff;
+}
+
+.game-info p:nth-child(2) {
+    background: #38c9bb;
+    color: #ffffff;
+}
+
+.game-info p:nth-child(3) {
+    background: #527bfa;
+    color: #ffffff;
+}
+
+.game-info p span {
+    color: #ffffff;
+}
+
+/* Coral pink card */
+.card:nth-child(4n + 1):hover:not(.flipped) {
+    background: #e4475e;
+}
+
+/* Yellow card */
+.card:nth-child(4n + 2):hover:not(.flipped) {
+    background: #e5a82b;
+}
+
+/* Turquoise card */
+.card:nth-child(4n + 3):hover:not(.flipped) {
+    background: #25a99c;
+}
+
+/* Blue card */
+.card:nth-child(4n + 4):hover:not(.flipped) {
+    background: #365ed6;
+}
+
+/* Smooth hover transition */
+.card {
+    transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+/* Keep revealed and matched cards unchanged on hover */
+.card.flipped:hover,
+.card.matched:hover {
+    transform: none;
+}
+
+/* Keep flipped cards white on hover */
+.card.flipped,
+.card.flipped:hover {
+    background-color: #ffffff !important;
+}
+
+/* Keep matched cards light green on hover */
+.card.matched,
+.card.matched:hover {
+    background-color: #dcf8e7 !important;
+}
+
+/* Fit game within one screen */
+body {
+    min-height: 100vh;
+    margin: 0;
+}
+
+.game-container {
+    width: min(100% - 32px, 600px);
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* Reduce heading spacing */
+h1 {
+    font-size: 32px;
+    margin-bottom: 6px;
+}
+
+#playScreen > p {
+    margin: 6px 0;
+}
+
+/* Compact score boxes */
+.game-info {
+    margin: 15px 0;
+    gap: 10px;
+}
+
+.game-info p {
+    padding: 10px 8px;
+}
+
+/* Smaller game board */
+.game-board {
+    max-width: 400px;
+    gap: 10px;
+    margin: 15px auto;
+}
+
+.card {
+    border-radius: 14px;
+    font-size: 30px;
+}
+
+/* Restart button spacing */
+#restartBtn {
+    margin-top: 5px;
+}
+
+/* Fit welcome and winning screens */
+.welcome-screen,
+.win-screen {
+    padding: 30px;
+    margin: 20px auto;
+}
+
+.instructions {
+    margin: 18px 0;
+    padding: 18px;
+}
+
+/* Compact layout on shorter screens */
+@media (max-height: 750px) {
+    .game-container {
+        padding: 10px 0;
+    }
+
+    .game-board {
+        max-width: 340px;
+        gap: 8px;
+        margin: 10px auto;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .game-info {
+        margin: 10px 0;
+    }
+}
+
+/* Decorative graphics */
+.game-container {
+    position: relative;
+}
+
+.decorations {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.decoration {
+    position: absolute;
+    font-size: 35px;
+    opacity: 0.7;
+    user-select: none;
+}
+
+.star-one {
+    top: 8%;
+    left: -12%;
+    color: #ffc84a;
+}
+
+.star-two {
+    top: 28%;
+    right: -12%;
+    color: #38c9bb;
+}
+
+.heart {
+    bottom: 18%;
+    left: -12%;
+    color: #ff6378;
+}
+
+.flower {
+    bottom: 10%;
+    right: -12%;
+    color: #527bfa;
+}
+
+.sparkle {
+    top: 55%;
+    left: -15%;
+    color: #ff9b73;
+}
+
+/* Keep game content above decorations */
+#welcomeScreen,
+#playScreen,
+#winScreen {
+    position: relative;
+    z-index: 1;
+}
+
+/* Hide edge decorations on narrow screens */
+@media (max-width: 800px) {
+    .decorations {
+        display: none;
+    }
+}
+
+/* Colorful heading */
+.colorful-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(36px, 5vw, 54px);
+    font-weight: 700;
+    letter-spacing: -1.5px;
+}
+
+.colorful-title span:first-child {
+    color: #ff6378;
+}
+
+.colorful-title span:last-child {
+    color: #3779ee;
+}
+
+/* Decorations */
+.decorations {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* SVG background illustrations */
+.decorations {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.deco-img {
+    position: absolute;
+    height: auto;
+    user-select: none;
+}
+
+.deco-sun {
+    width: 145px;
+    top: 7%;
+    left: 5%;
+}
+
+.deco-cloud-left {
+    width: 190px;
+    top: 32%;
+    left: 7%;
+}
+
+.deco-cloud-right {
+    width: 190px;
+    top: 43%;
+    right: 6%;
+}
+
+.deco-flower-left {
+    width: 160px;
+    bottom: -25px;
+    left: 3%;
+}
+
+.deco-flower-right {
+    width: 150px;
+    bottom: -25px;
+    right: 3%;
+    transform: scaleX(-1);
+}
+
+.deco-sparkle-left {
+    width: 35px;
+    top: 42%;
+    left: 4%;
+}
+
+.deco-sparkle-right {
+    width: 40px;
+    top: 20%;
+    right: 12%;
+}
+
+/* Keep all game screens above decorations */
+.game-container {
+    position: relative;
+    z-index: 1;
+}
+
+#welcomeScreen,
+#playScreen,
+#winScreen {
+    position: relative;
+    z-index: 1;
+}
+
+/* Responsive decorative elements */
+@media (max-width: 900px) {
+    .deco-img {
+        opacity: 0.35;
+    }
+
+    .deco-sun {
+        width: 80px;
+        left: 1%;
+    }
+
+    .deco-flower-left,
+    .deco-flower-right {
+        width: 95px;
+    }
+}
+
+@media (max-width: 600px) {
+    .deco-cloud-left,
+    .deco-cloud-right,
+    .deco-flower-left,
+    .deco-flower-right {
+        display: none;
+    }
+}
+
+/* Transparent game screen to show background image */
+#playScreen {
+    background: transparent;
+}
